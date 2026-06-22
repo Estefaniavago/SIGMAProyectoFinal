@@ -3,7 +3,7 @@ import { LoginScreen } from './pages/LoginScreen.jsx';
 import { DashboardScreen } from './pages/DashboardScreen.jsx';
 import { ActivosScreen } from './pages/ActivosScreen.jsx';
 import { DetallesActivosScreen } from './pages/DetallesActivosScreen.jsx';
-import { CrearActivoScreen } from './pages/CrearActivoScreen';
+import { CrearActivoScreen } from './components/CrearActivoScreen.jsx';
 import { OrdenesScreen } from './pages/OrdenesScreen.jsx';
 import { CrearOrdenScreen } from './pages/CrearOrdenesScreen.jsx';
 import { MisTareasScreen } from './pages/MisTareasScreen.jsx';
