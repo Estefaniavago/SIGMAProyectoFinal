@@ -12,6 +12,9 @@ const activoRoutes = require("./routes/activoRoutes");
 const ordenTrabajoRoutes = require("./routes/ordenTrabajoRoutes");
 const inspeccionRoutes = require("./routes/inspeccionRoutes");
 const intervencionRoutes = require("./routes/intervencionRoutes");
+const repuestoRoutes = require("./routes/repuestoRoutes");
+const consumoRepuestoRoutes = require("./routes/consumoRepuestoRoutes");
+
 
 app.use(express.json());
 
@@ -21,6 +24,8 @@ app.use("/api", activoRoutes);
 app.use("/api", ordenTrabajoRoutes);
 app.use("/api", inspeccionRoutes);
 app.use("/api", intervencionRoutes);
+app.use("/api", repuestoRoutes);
+app.use("/api", consumoRepuestoRoutes);
 
 app.get("/", (req, res) => {
     res.send("Servidor SIGMA funcionando correctamente");
