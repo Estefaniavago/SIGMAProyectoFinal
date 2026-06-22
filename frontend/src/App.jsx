@@ -10,8 +10,7 @@ import { MisTareasScreen } from './pages/MisTareasScreen.jsx';
 import { RegistrarIntervencionScreen } from './pages/RegistrarIntervencionScreen.jsx';
 import { InspeccionesScreen } from './pages/InspeccionesScreen.jsx';
 import { UsuariosScreen } from './pages/UsuariosScreen.jsx';
-
-
+import { RepuestosScreen } from './pages/RepuestosScreen.jsx'; 
 import { MainLayout } from './components/MainLayout.jsx';
 
 export default function App() {
@@ -28,32 +27,22 @@ export default function App() {
   return (
     <MainLayout activeTab={current} onNavigate={setCurrent}>
       
-      {/* SPRINT 1 */}
-      {current === 'dashboard' && <DashboardScreen onNavigate={setCurrent} />}
 
-      {/* SPRINT 2 */}
+      {current === 'dashboard' && <DashboardScreen onNavigate={setCurrent} />}
       {current === 'activos' && <ActivosScreen onNavigate={setCurrent} />}
       {current === 'crear-activo' && <CrearActivoScreen onNavigate={setCurrent} />}
       {current === 'detalle-activo' && <DetallesActivosScreen onBack={() => setCurrent('activos')} />}
       {current === 'ordenes' && <OrdenesScreen onNavigate={setCurrent} />}
       {current === 'crear-orden' && <CrearOrdenScreen onBack={() => setCurrent('ordenes')} />}
-
-      {/* SPRINT 3 (LOS TRES NUEVOS) */}
       {current === 'tareas' && <MisTareasScreen onNavigate={setCurrent} />}
       {current === 'registrar-intervencion' && <RegistrarIntervencionScreen onBack={() => setCurrent('tareas')} />}
       {current === 'inspecciones' && <InspeccionesScreen />}
       {current === 'usuarios' && <UsuariosScreen onNavigate={setCurrent} />}
-      {current === 'detalle-activo' && (
-  <DetallesActivosScreen 
-    idActivo={activoSeleccionado} 
-    onBack={() => setCurrent('activos')} 
-  />
-)}
+      {current === 'detalle-activo' && (<DetallesActivosScreen idActivo={activoSeleccionado}onBack={() => setCurrent('activos')} />)}
+      {current === 'repuestos' && <RepuestosScreen onNavigate={setCurrent} />} 
+         
       {/* Pantallas fantasma pendientes del último Sprint */}
-      {current !== 'dashboard' && 
-       current !== 'ordenes' && 
-       current !== 'crear-orden' && 
-       current !== 'tareas' && 
+      {
        current !== 'registrar-intervencion' && 
        current !== 'inspecciones'
         

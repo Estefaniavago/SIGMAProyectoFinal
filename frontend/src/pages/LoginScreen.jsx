@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Lock, User, Loader2 } from 'lucide-react';
-import { api } from '../services/api'; // <--- IMPORTANTE: Asegurate de tener el servicio creado
+import { api } from '../services/api'; 
 
 export const LoginScreen = ({ onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('vsoria@planta.inti'); // Valor inicial para comodidad
+  const [email, setEmail] = useState('vsoria@planta.inti'); 
   const [password, setPassword] = useState('1234');
 
   const handleSubmit = async (e) => {

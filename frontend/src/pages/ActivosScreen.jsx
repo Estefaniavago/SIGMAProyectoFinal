@@ -20,7 +20,6 @@ export const ActivosScreen = ({ onNavigate }) => {
         setLoading(true);
         setError(null);
         try {
-            // Disparamos al puerto 3000 de tu Node.js
             const response = await fetch('http://localhost:3000/api/activos');
 
             if (!response.ok) {
@@ -37,7 +36,6 @@ export const ActivosScreen = ({ onNavigate }) => {
         }
     };
 
-    // Se ejecuta automáticamente al abrir la pantalla
     useEffect(() => {
         obtenerActivosDesdeMySQL();
     }, []);
@@ -126,7 +124,7 @@ export const ActivosScreen = ({ onNavigate }) => {
                                         <span className="text-[10px] text-slate-400 font-bold uppercase truncate">{item.area}</span>
                                     </div>
 
-                                    <h4 className="font-bold text-xs text-slate-800 truncate">{item.equipo}</h4>
+                                    <h4 className="font-bold text-xs text-slate-800 truncate">{item.nombre}</h4>
 
                                     <div className="inline-flex pt-0.5">
                                         <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full border ${getBadgeStyle(item.estado)}`}>

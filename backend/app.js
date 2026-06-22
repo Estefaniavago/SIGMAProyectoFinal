@@ -1,9 +1,5 @@
 const express = require("express");
 require("./database/connection");
-
-
-
-
 const app = express();
 
 const authRoutes = require("./routes/authRoutes");
@@ -28,14 +24,14 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use("/api", authRoutes);
-app.use("/api", usuarioRoutes);
-app.use("/api", activoRoutes);
-app.use("/api", ordenTrabajoRoutes);
-app.use("/api", inspeccionRoutes);
-app.use("/api", intervencionRoutes);
-app.use("/api", repuestoRoutes);
-app.use("/api", consumoRepuestoRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/usuarios", usuarioRoutes);
+app.use("/api/activos", activoRoutes);
+app.use("/api/ordenes-trabajo", ordenTrabajoRoutes);
+app.use("/api/inspecciones", inspeccionRoutes);
+app.use("/api/intervenciones", intervencionRoutes);
+app.use("/api/repuestos", repuestoRoutes);
+app.use("/api/consumos-repuestos", consumoRepuestoRoutes);
 
 app.get("/", (req, res) => {
     res.send("Servidor SIGMA funcionando correctamente");

@@ -3,14 +3,7 @@ const router = express.Router();
 
 const repuestoController = require("../controllers/repuestoController");
 
-router.get(
-    "/repuestos",
-    repuestoController.obtenerRepuestos
-);
-
-router.post(
-    "/repuestos",
-    repuestoController.crearRepuesto
-);
+router.get("/", repuestoController.obtenerRepuestos);
+router.post("/", repuestoController.crearRepuesto);
 
 module.exports = router;

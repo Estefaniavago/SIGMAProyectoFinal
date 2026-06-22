@@ -13,7 +13,7 @@ export const CrearActivoScreen = ({ onNavigate }) => {
     try {
       await api.crearActivo(formData);
       alert("Activo creado correctamente");
-      onNavigate('activos'); // Volvemos al listado
+      onNavigate('activos'); 
     } catch (err) {
       console.error("Error al crear:", err);
       alert("Error al guardar en la base de datos");
@@ -23,7 +23,7 @@ export const CrearActivoScreen = ({ onNavigate }) => {
   return (
     <div className="space-y-6 text-left pb-10">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-black text-[#0A2540]">Nuevo Activo</h2>
+        <h2 className="text-xl font-black text-[#0A2541]">Nuevo Activo</h2>
         <button onClick={() => onNavigate('activos')} className="text-xs font-bold text-slate-500 flex items-center gap-1 hover:text-[#007AFF]">
           <ArrowLeft size={14} /> Volver
         </button>
@@ -31,7 +31,7 @@ export const CrearActivoScreen = ({ onNavigate }) => {
 
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input placeholder="Código (ej: P-101)" className="p-3 border rounded-xl text-sm" onChange={e => setFormData({...formData, codigo: e.target.value})} required />
+          <input placeholder="Código (ej: P-101)" className="p-3 border rounded-xl text-sm font-white" onChange={e => setFormData({...formData, codigo: e.target.value})} required />
           <input placeholder="Equipo (ej: Bomba principal)" className="p-3 border rounded-xl text-sm" onChange={e => setFormData({...formData, equipo: e.target.value})} required />
           <input placeholder="Área" className="p-3 border rounded-xl text-sm" onChange={e => setFormData({...formData, area: e.target.value})} />
           <select className="p-3 border rounded-xl text-sm" onChange={e => setFormData({...formData, estado: e.target.value})}>

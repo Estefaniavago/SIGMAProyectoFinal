@@ -28,7 +28,7 @@ export const api = {
 
  
   login: async (email, password) => {
-    const res = await fetch(`${BASE_URL}/login`, {
+    const res = await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -45,4 +45,8 @@ export const api = {
   // Activos
   getActivos: () => api.get('activos'),
   crearActivo: (data) => api.post('activos', data),
+
+  // Repuestos
+  getRepuestos: () => api.get('repuestos'),
+  crearRepuesto: (data) => api.post('repuestos', data),
 };
