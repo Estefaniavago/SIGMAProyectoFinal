@@ -1,6 +1,7 @@
 const connection = require("../database/connection");
 
 const obtenerUsuarios = (req, res) => {
+    console.log("--- EL BACKEND RECIBIÓ UNA PETICIÓN EN /usuarios ---"); 
 
     const sql = `
         SELECT
@@ -18,6 +19,7 @@ const obtenerUsuarios = (req, res) => {
     connection.query(sql, (error, results) => {
 
         if (error) {
+            console.log("ERROR SQL:", error);
             return res.status(500).json({
                 mensaje: "Error al obtener usuarios"
             });

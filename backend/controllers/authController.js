@@ -3,7 +3,7 @@ const connection = require("../database/connection");
 const login = (req, res) => {
 
     const { email, password } = req.body;
-
+    console.log("DEBUG LOGIN: Email recibido:", email, "Password recibido:", password);
     const sql = `
         SELECT u.*, r.nombre AS rol
         FROM usuarios u

@@ -1,24 +1,26 @@
 const connection = require("../database/connection");
 
+const crearActivo = (req, res) => {
+    const { codigo, equipo, area, estado, fabricante, modelo, serie, instalacion } = req.body;
+    
+    const sql = `INSERT INTO activos (codigo, equipo, area, estado, fabricante, modelo, serie, instalacion) VALUES (?,?,?,?,?,?,?,?)`;
+    
+    connection.query(sql, [codigo, equipo, area, estado, fabricante, modelo, serie, instalacion], (err, result) => {
+        if (err) return res.status(500).json({ error: "Error al crear activo" });
+        res.status(201).json({ mensaje: "Activo creado", id: result.insertId });
+    });
+};
 const obtenerActivos = (req, res) => {
-
-    const sql = `
-        SELECT *
-        FROM activos
-    `;
+    // Select simple porque tu tabla tiene todos los datos necesarios
+    const sql = "SELECT * FROM activos";
 
     connection.query(sql, (error, results) => {
-
         if (error) {
-            return res.status(500).json({
-                mensaje: "Error al obtener activos"
-            });
+            console.log("Error SQL:", error);
+            return res.status(500).json({ mensaje: "Error al obtener activos" });
         }
-
         res.status(200).json(results);
-
     });
-
 };
 const crearActivo = (req, res) => {
 
@@ -201,6 +203,7 @@ const desactivarActivo = (req, res) => {
     });
 
 };
+
 
 module.exports = {
     obtenerActivos,

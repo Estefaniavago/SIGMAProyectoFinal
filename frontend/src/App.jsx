@@ -1,122 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from 'react';
+import { LoginScreen } from './pages/LoginScreen.jsx';
+import { DashboardScreen } from './pages/DashboardScreen.jsx';
+import { ActivosScreen } from './pages/ActivosScreen.jsx';
+import { DetallesActivosScreen } from './pages/DetallesActivosScreen.jsx';
+import { CrearActivoScreen } from './pages/CrearActivoScreen';
+import { OrdenesScreen } from './pages/OrdenesScreen.jsx';
+import { CrearOrdenScreen } from './pages/CrearOrdenesScreen.jsx';
+import { MisTareasScreen } from './pages/MisTareasScreen.jsx';
+import { RegistrarIntervencionScreen } from './pages/RegistrarIntervencionScreen.jsx';
+import { InspeccionesScreen } from './pages/InspeccionesScreen.jsx';
+import { UsuariosScreen } from './pages/UsuariosScreen.jsx';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+import { MainLayout } from './components/MainLayout.jsx';
+
+export default function App() {
+  const [current, setCurrent] = useState('login');
+  const [activoSeleccionado, setActivoSeleccionado] = useState(null);
+
+  const handleNavigate = (tab, id = null) => {
+  setCurrent(tab);
+  if (id) setActivoSeleccionado(id);
+};
+
+  if (current === 'login') return <LoginScreen onLogin={() => setCurrent('dashboard')} />;
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <MainLayout activeTab={current} onNavigate={setCurrent}>
+      
+      {/* SPRINT 1 */}
+      {current === 'dashboard' && <DashboardScreen onNavigate={setCurrent} />}
 
-      <div className="ticks"></div>
+      {/* SPRINT 2 */}
+      {current === 'activos' && <ActivosScreen onNavigate={setCurrent} />}
+      {current === 'crear-activo' && <CrearActivoScreen onNavigate={setCurrent} />}
+      {current === 'detalle-activo' && <DetallesActivosScreen onBack={() => setCurrent('activos')} />}
+      {current === 'ordenes' && <OrdenesScreen onNavigate={setCurrent} />}
+      {current === 'crear-orden' && <CrearOrdenScreen onBack={() => setCurrent('ordenes')} />}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* SPRINT 3 (LOS TRES NUEVOS) */}
+      {current === 'tareas' && <MisTareasScreen onNavigate={setCurrent} />}
+      {current === 'registrar-intervencion' && <RegistrarIntervencionScreen onBack={() => setCurrent('tareas')} />}
+      {current === 'inspecciones' && <InspeccionesScreen />}
+      {current === 'usuarios' && <UsuariosScreen onNavigate={setCurrent} />}
+      {current === 'detalle-activo' && (
+  <DetallesActivosScreen 
+    idActivo={activoSeleccionado} 
+    onBack={() => setCurrent('activos')} 
+  />
+)}
+      {/* Pantallas fantasma pendientes del último Sprint */}
+      {current !== 'dashboard' && 
+       current !== 'ordenes' && 
+       current !== 'crear-orden' && 
+       current !== 'tareas' && 
+       current !== 'registrar-intervencion' && 
+       current !== 'inspecciones'
+        
+      }
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    </MainLayout>
+  );
 }
-
-export default App
